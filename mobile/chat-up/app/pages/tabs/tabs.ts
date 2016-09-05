@@ -7,13 +7,9 @@ import {AboutPage} from '../about/about';
 })
 export class TabsPage {
 
-  private tab1Root: any;
-  private tab2Root: any;
+  private tab1Root: any = HomePage;
+  private tab2Root: any = AboutPage;
 
   constructor() {
-    // this tells the tabs component which Pages
-    // should be each tab's root Page
-    this.tab1Root = HomePage;
-    this.tab2Root = AboutPage;
   }
 }

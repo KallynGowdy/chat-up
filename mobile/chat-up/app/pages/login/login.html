@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar primary>
         <ion-title>
             Login
         </ion-title>
@@ -7,17 +7,19 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password"></ion-input>
-        </ion-item>
-    </ion-list>
-    <div padding>
-        <button block private>Login!</button>
-    </div>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input #username="ngModel" name="username" type="text" [(ngModel)]="model.userName" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input #password="ngModel" name="password" type="password" [(ngModel)]="model.password" required></ion-input>
+            </ion-item>
+        </ion-list>
+        <div padding>
+            <button block type="submit" [disabled]="!loginForm.form.valid">Login!</button>
+        </div>
+    </form>
 </ion-content>
