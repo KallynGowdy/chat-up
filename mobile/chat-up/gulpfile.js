@@ -72,3 +72,21 @@ gulp.task('clean', function(){
   return del('www/build');
 });
 gulp.task('lint', tslint);
+
+gulp.task('karma', function(done) {
+  var karmaOpts = {
+    configFile: path.join(process.cwd(), 'karma.config.js'),
+    singleRun: true
+  };
+
+  new karma.Server(karmaOpts, done).start();
+});
+
+gulp.task('test', function(done) {
+  runSequence(
+    'build',
+    'lint',
+    'karma',
+    done
+  );
+});
