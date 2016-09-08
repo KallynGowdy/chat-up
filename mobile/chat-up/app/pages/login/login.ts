@@ -7,7 +7,7 @@ import {TabsPage} from '../tabs/tabs';
 })
 export class LoginPage {
 
-    model = {
+    public model = {
         userName: '',
         password: ''
     };
@@ -15,7 +15,7 @@ export class LoginPage {
     constructor(private navCtrl: NavController) {
     }
 
-    login() {
+    public login(): void {
         this.navCtrl.push(TabsPage);
     }
 }
