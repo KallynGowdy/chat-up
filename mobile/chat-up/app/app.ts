@@ -1,7 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, provide} from '@angular/core';
+import {provideCloud} from '@ionic/cloud-angular';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LoginPage} from './pages/login/login';
+import {defaultConfig, CONFIG_PROVIDERS} from './config';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
@@ -21,4 +23,4 @@ export class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [provideCloud(defaultConfig.cloudSettings), CONFIG_PROVIDERS]);

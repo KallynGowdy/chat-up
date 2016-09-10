@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>
+      Sign Up
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form #signupForm="ngForm" (ngSubmit)="signup()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Email *</ion-label>
+        <ion-input #email="ngModel" name="email" type="email" [(ngModel)]="signupModel.email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Username *</ion-label>
+        <ion-input #username="ngModel" name="username" type="text" [(ngModel)]="signupModel.userName"
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password *</ion-label>
+        <ion-input #password="ngModel" name="password" type="password" [(ngModel)]="signupModel.password"
+                   required minlength="8"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirm Password *</ion-label>
+        <ion-input #confirmPassword="ngModel" name="confirmPassword" type="password"
+                   [(ngModel)]="signupModel.confirmPassword"
+                   required ></ion-input>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <a (click)="showLogin()">Show login form</a>
+    </div>
+    <div padding>
+      <button block type="submit" [disabled]="!signupForm.form.valid">Sign Up!</button>
+    </div>
+  </form>
+</ion-content>
