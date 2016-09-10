@@ -21,10 +21,10 @@ export class SignupPage extends ValidationPage {
   confirmPassword: string = '';
 
   formErrors = {
-    email: '',
-    userName: '',
-    password: '',
-    confirmPassword: ''
+    email: [],
+    userName: [],
+    password: [],
+    confirmPassword: []
   };
 
   validationMessages = {
@@ -33,17 +33,20 @@ export class SignupPage extends ValidationPage {
       email: 'You need to provide a valid email'
     },
     userName: {
-      required: "You need to provide a Username",
-      minlength: "Your username must be at least 3 characters long"
+      required: "You need to provide a username",
+      minlength: "Your username must be at least 3 characters long",
+      number: "Your username must start with a letter"
     },
     password: {
       required: 'You need to provide a password',
-      minlength: 'Your password must be at least 8 characters long'
+      minlength: 'Your password must be at least 8 characters long',
+      digit: 'Your password must contain at least 1 number'
     },
     confirmPassword: {
       required: 'You need to confirm your password',
       'equals-password': 'Your passwords do not match'
-    }
+    },
+    _default: 'This field is invalid'
   };
 
   constructor(private navCtrl: NavController, private loginService: LoginService, private fb: FormBuilder) {
@@ -60,10 +63,10 @@ export class SignupPage extends ValidationPage {
         [Validators.required, ExtraValidators.email]
       ],
       userName: [this.userName,
-        [Validators.required, Validators.minLength(3)]
+        [Validators.required, ExtraValidators.regex(/^[a-zA-Z]\w*$/, 'number'), Validators.minLength(3)]
       ],
       password: [this.password,
-        [Validators.required, Validators.minLength(8)]
+        [Validators.required, ExtraValidators.regex(/\d/, 'digit'), Validators.minLength(8)]
       ],
       confirmPassword: [this.confirmPassword,
         [Validators.required, ExtraValidators.equals(() => this.form, 'password')]

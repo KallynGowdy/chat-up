@@ -19,8 +19,8 @@ export class LoginPage extends ValidationPage {
   form: FormGroup;
 
   formErrors = {
-    username: '',
-    password: ''
+    username: [],
+    password: []
   };
 
   validationMessages = {
@@ -29,7 +29,8 @@ export class LoginPage extends ValidationPage {
     },
     password: {
       required: 'Your password is required.'
-    }
+    },
+    _default: 'This field is invalid'
   };
 
   constructor(private navCtrl: NavController, private loginService: LoginService, private builder: FormBuilder) {

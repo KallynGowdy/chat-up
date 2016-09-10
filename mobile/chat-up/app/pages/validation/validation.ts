@@ -5,7 +5,9 @@ export class ValidationPage {
   form: FormGroup;
 
   formErrors = {};
-  validationMessages = {};
+  validationMessages = {
+    _default: 'This field is invalid'
+  };
 
   buildForm(): void {
     this.form.valueChanges
@@ -19,12 +21,13 @@ export class ValidationPage {
     const form = this.form;
     for (const field in this.formErrors) {
       // clear previous error message (if any)
-      this.formErrors[field] = '';
+      this.formErrors[field] = [];
       const control = form.find(field);
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+          const message = messages[key] || this.validationMessages._default || 'This field is invalid';
+          this.formErrors[field].push(message);
         }
       }
     }

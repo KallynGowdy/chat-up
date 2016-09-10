@@ -11,13 +11,13 @@
     <ion-list>
       <ion-item>
         <ion-label floating>
-          <validation-label [error]="formErrors.username">Username *</validation-label>
+          <validation-label [errors]="formErrors.username">Username *</validation-label>
         </ion-label>
         <ion-input name="username" type="text" formControlName="username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <validation-label [error]="formErrors.password">Password *</validation-label>
+          <validation-label [errors]="formErrors.password">Password *</validation-label>
         </ion-label>
         <ion-input name="password" type="password" formControlName="password"></ion-input>
       </ion-item>

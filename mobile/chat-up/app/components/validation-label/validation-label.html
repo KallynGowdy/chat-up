@@ -1,4 +1,9 @@
-<span *ngIf="!error">
+<span *ngIf="!errors.length">
     <ng-content></ng-content>
 </span>
-<span danger *ngIf="error">{{error}}</span>
+<span *ngIf="showAll">
+  <div danger *ngFor="let error of errors">
+    <span danger>{{error}}</span>
+  </div>
+</span>
+<span *ngIf="!showAll && firstError" danger>{{firstError}}</span>

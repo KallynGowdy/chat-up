@@ -11,25 +11,25 @@
     <ion-list>
       <ion-item>
         <ion-label floating>
-          <validation-label [error]="formErrors.email">Email *</validation-label>
+          <validation-label [errors]="formErrors.email">Email *</validation-label>
         </ion-label>
         <ion-input name="email" type="email" formControlName="email" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <validation-label [error]="formErrors.userName">Username *</validation-label>
+          <validation-label [errors]="formErrors.userName" showAll=true>Username *</validation-label>
         </ion-label>
         <ion-input name="username" type="text" formControlName="userName" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <validation-label [error]="formErrors.password">Password *</validation-label>
+          <validation-label [errors]="formErrors.password">Password *</validation-label>
         </ion-label>
         <ion-input name="password" type="password" formControlName="password"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <validation-label [error]="formErrors.confirmPassword">Confirm Password *</validation-label>
+          <validation-label [errors]="formErrors.confirmPassword">Confirm Password *</validation-label>
         </ion-label>
         <ion-input name="confirmPassword" type="password" formControlName="confirmPassword" required></ion-input>
       </ion-item>
