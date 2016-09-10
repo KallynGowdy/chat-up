@@ -8,6 +8,6 @@ export function email(control: AbstractControl): {[key: string]: any} {
   const email = control.value;
   const at = email.indexOf('@');
   const lastDot = email.indexOf('.');
-  const valid = at > 0 && lastDot > at + 1;
+  const valid = at > 0 && lastDot > at + 1 && lastDot < email.length - 1;
   return !valid ? {'email': {email}} : null;
 }

@@ -1,19 +1,23 @@
 <ion-header>
   <ion-navbar primary>
     <ion-title>
-      Login
+      Sign In
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <h2 padding-left>ChatUp Account</h2>
   <form [formGroup]="form" (ngSubmit)="loginLocal()">
+    <div padding>
+      <validation-label [errors]="submitErrors" showAll=true></validation-label>
+    </div>
     <ion-list>
       <ion-item>
         <ion-label floating>
-          <validation-label [errors]="formErrors.username">Username *</validation-label>
+          <validation-label [errors]="formErrors.email">Email *</validation-label>
         </ion-label>
-        <ion-input name="username" type="text" formControlName="username"></ion-input>
+        <ion-input name="email" type="email" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
@@ -23,10 +27,10 @@
       </ion-item>
     </ion-list>
     <div padding>
-      <a (click)="showSignup()">Show signup form</a>
+      <a (click)="showSignup()">Need an account?</a>
     </div>
     <div padding>
-      <button block type="submit" [disabled]="!form.valid">Login!</button>
+      <button block type="submit" [disabled]="!form.valid">Sign In!</button>
     </div>
   </form>
 </ion-content>

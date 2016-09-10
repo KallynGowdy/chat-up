@@ -3,7 +3,6 @@ import {FormGroup} from '@angular/forms';
 export class ValidationPage {
 
   form: FormGroup;
-
   formErrors = {};
   validationMessages = {
     _default: 'This field is invalid'
@@ -11,16 +10,24 @@ export class ValidationPage {
 
   buildForm(): void {
     this.form.valueChanges
-      .subscribe(() => this.onValueChanged());
+      .subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
   }
 
   ngOnInit(): void {
     this.buildForm();
   }
 
-  onValueChanged(): void {
+  onValueChanged(data?: any): void {
     if (!this.form) {
       return;
+    }
+    if(data) {
+      for(const key in data) {
+        if(this.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+          this[key] = data[key];
+        }
+      }
     }
     const form = this.form;
     for (const field in this.formErrors) {

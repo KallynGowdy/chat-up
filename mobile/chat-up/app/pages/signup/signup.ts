@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, LoadingController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {LoginService} from '../login/services/login.service';
 import {LoginPage} from '../login/login';
@@ -22,17 +22,18 @@ export class SignupPage extends ValidationPage {
 
   formErrors = {
     email: [],
-    userName: [],
+    username: [],
     password: [],
     confirmPassword: []
   };
+  submitErrors = [];
 
   validationMessages = {
     email: {
       required: 'You need to provide an email address',
       email: 'You need to provide a valid email'
     },
-    userName: {
+    username: {
       required: 'You need to provide a username',
       minlength: 'Your username must be at least 3 characters long',
       number: 'Your username must start with a letter'
@@ -49,18 +50,16 @@ export class SignupPage extends ValidationPage {
     _default: 'This field is invalid'
   };
 
-  constructor(private navCtrl: NavController, private loginService: LoginService, private fb: FormBuilder) {
+  constructor(private navCtrl: NavController, private loginService: LoginService, private fb: FormBuilder, private loaderCtrl: LoadingController) {
     super();
   }
-
-
 
   buildForm(): void {
     this.form = this.fb.group({
       email: [this.email,
         [Validators.required, ExtraValidators.email]
       ],
-      userName: [this.userName,
+      username: [this.userName,
         [Validators.required, ExtraValidators.regex(/^[a-zA-Z]\w*$/, 'number'), Validators.minLength(3)]
       ],
       password: [this.password,
@@ -78,10 +77,17 @@ export class SignupPage extends ValidationPage {
   }
 
   signupLocal(): void {
+    let loader = this.loaderCtrl.create({
+      content: 'Creating your account...'
+    });
+    loader.present();
     this.loginService.signupLocal(this.email, this.userName, this.password)
       .then(result => {
+        loader.destroy();
         if (result.isSuccessful) {
           this.navCtrl.push(TabsPage);
+        } else {
+          this.submitErrors = result.messages.map(m => m.toString());
         }
       });
   }

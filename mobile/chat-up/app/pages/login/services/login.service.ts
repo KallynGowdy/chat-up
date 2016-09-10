@@ -5,6 +5,8 @@ import {Http} from '@angular/http';
 import {IServiceConfig} from '../../../config';
 import {ResultStatus} from '../../../common/results/result-status';
 import {Auth, User} from '@ionic/cloud-angular';
+import {ResultMessage} from "../../../common/results/result-message";
+import {ResultMessageLevel} from "../../../common/results/result-message-level";
 
 export interface ILoginService {
   loginWithGoogle(): Promise<LoginResult>;
@@ -27,16 +29,18 @@ export class LoginService extends BaseService implements ILoginService {
     }).then(() => {
       return new LoginResult('local', ResultStatus.Success);
     }).catch(() => {
-      return new LoginResult('local', ResultStatus.Failure);
+      return new LoginResult('local', ResultStatus.Failure, [new ResultMessage('Signup failed.', ResultMessageLevel.Error)]);
     });
   }
 
-  loginLocal(username: string, password: string): Promise<LoginResult> {
+  loginLocal(email: string, password: string): Promise<LoginResult> {
     return this.auth.login('basic', {
-      username: username,
+      email: email,
       password: password
     }).then(() => {
       return new LoginResult('local', ResultStatus.Success);
+    }).catch(() => {
+      return new LoginResult('local', ResultStatus.Failure, [new ResultMessage('Login failed.', ResultMessageLevel.Error)]);
     });
   }
 
