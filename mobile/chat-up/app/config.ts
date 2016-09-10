@@ -1,5 +1,5 @@
 import {CloudSettings} from '@ionic/cloud-angular';
-import {provide} from "@angular/core";
+import {provide} from '@angular/core';
 
 export interface IServiceConfig {
   rootUrl: string;

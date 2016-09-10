@@ -11,23 +11,13 @@
     <ion-list>
       <ion-item>
         <ion-label floating>
-          <span *ngIf="!formErrors.username">
-            Username *
-          </span>
-          <span danger *ngIf="formErrors.username">
-            {{formErrors.username}}
-          </span>
+          <validation-label [error]="formErrors.username">Username *</validation-label>
         </ion-label>
         <ion-input name="username" type="text" formControlName="username"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
-          <span *ngIf="!formErrors.password">
-            Password *
-          </span>
-          <span danger *ngIf="formErrors.password">
-            {{formErrors.password}}
-          </span>
+          <validation-label [error]="formErrors.password">Password *</validation-label>
         </ion-label>
         <ion-input name="password" type="password" formControlName="password"></ion-input>
       </ion-item>

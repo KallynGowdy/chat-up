@@ -3,14 +3,16 @@ import {NavController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {LoginService} from "./services/login.service";
 import {SignupPage} from "../signup/signup";
-import {Control, ControlGroup} from "@angular/common";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
+import {ValidationPage} from "../validation/validation";
+import {ValidationLabel} from "../../components/validation-label/validation-label";
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [LoginService]
+  providers: [LoginService],
+  directives: [ValidationLabel]
 })
-export class LoginPage {
+export class LoginPage extends ValidationPage {
 
   username: string;
   password: string;
@@ -28,9 +30,10 @@ export class LoginPage {
     password: {
       required: 'Your password is required.'
     }
-  }
+  };
 
   constructor(private navCtrl: NavController, private loginService: LoginService, private builder: FormBuilder) {
+    super();
   }
 
   buildForm(): void {
@@ -38,31 +41,11 @@ export class LoginPage {
       username: [this.username, Validators.required],
       password: [this.password, Validators.required]
     });
-
-    this.form.valueChanges
-      .subscribe(data => this.onValueChanged(data));
+    super.buildForm();
   }
 
   ngOnInit(): void {
     this.buildForm();
-  }
-
-  onValueChanged(data?: any) {
-    if (!this.form) {
-      return;
-    }
-    const form = this.form;
-    for (const field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.find(field);
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
-      }
-    }
   }
 
   public loginLocal(): void {

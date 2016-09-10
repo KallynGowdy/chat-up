@@ -1,4 +1,4 @@
-import {Component, provide} from '@angular/core';
+import {Component} from '@angular/core';
 import {provideCloud} from '@ionic/cloud-angular';
 import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
