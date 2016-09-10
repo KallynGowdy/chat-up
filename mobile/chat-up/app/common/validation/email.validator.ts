@@ -1,4 +1,4 @@
-import {AbstractControl} from "@angular/forms";
+import {AbstractControl} from '@angular/forms';
 
 /**
  * Defines a validator that checks for a valid email.

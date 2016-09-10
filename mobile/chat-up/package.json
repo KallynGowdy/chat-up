@@ -17,6 +17,7 @@
     "zone.js": "0.6.17"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-tslint": "^6.1.1",
@@ -28,13 +29,21 @@
     "ionic-gulp-scripts-copy": "^2.0.0",
     "ionic-gulp-tslint": "^1.0.0",
     "karma": "^1.2.0",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-mocha": "^1.1.1",
     "karma-mocha-reporter": "^2.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon": "^1.0.5",
+    "karma-typescript-preprocessor": "^0.2.1",
+    "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
     "phantomjs-prebuilt": "^2.1.12",
     "run-sequence": "1.1.5",
-    "tslint-ionic-rules": "0.0.4"
+    "sinon": "^1.17.5",
+    "ts-loader": "^0.8.2",
+    "tslint-ionic-rules": "0.0.4",
+    "webpack": "^1.13.2"
   },
   "name": "chat-up",
   "description": "chat-up: An Ionic project",

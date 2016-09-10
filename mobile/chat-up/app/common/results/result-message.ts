@@ -1,4 +1,4 @@
-import {ResultMessageLevel} from "./result-message-level";
+import {ResultMessageLevel} from './result-message-level';
 export class ResultMessage {
   public message: string;
   public level: ResultMessageLevel;

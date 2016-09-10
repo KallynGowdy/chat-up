@@ -1,4 +1,4 @@
-import {ValidatorFn, AbstractControl} from "@angular/forms";
+import {ValidatorFn, AbstractControl} from '@angular/forms';
 
 /**
  * Defines a validator that validates a control based on whether the control value matches the regex's value.

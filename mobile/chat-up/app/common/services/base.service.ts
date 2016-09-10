@@ -1,5 +1,5 @@
-import {Http} from "@angular/http";
-import {IServiceConfig} from "../../config";
+import {Http} from '@angular/http';
+import {IServiceConfig} from '../../config';
 
 export class BaseService {
   public config: IServiceConfig;

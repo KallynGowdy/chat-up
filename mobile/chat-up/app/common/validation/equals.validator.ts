@@ -1,4 +1,4 @@
-import {ValidatorFn, AbstractControl, FormGroup} from "@angular/forms";
+import {ValidatorFn, AbstractControl, FormGroup} from '@angular/forms';
 
 /**
  * Defines a validator that determines whether the control's value equals the given other control's value.

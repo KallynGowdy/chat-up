@@ -1,6 +1,6 @@
+import {ResultStatus} from './result-status';
+import {ResultMessage} from './result-message';
 
-import {ResultStatus} from "./result-status";
-import {ResultMessage} from "./result-message";
 export class Result {
   public status: ResultStatus;
   public get isSuccessful(): boolean {

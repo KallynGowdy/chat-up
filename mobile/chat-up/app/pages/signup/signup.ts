@@ -3,7 +3,7 @@ import {NavController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {LoginService} from '../login/services/login.service';
 import {LoginPage} from '../login/login';
-import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import {ValidationPage} from '../validation/validation';
 import {ValidationLabel} from '../../components/validation-label/validation-label';
 import * as ExtraValidators from '../../common/validation';
@@ -33,9 +33,9 @@ export class SignupPage extends ValidationPage {
       email: 'You need to provide a valid email'
     },
     userName: {
-      required: "You need to provide a username",
-      minlength: "Your username must be at least 3 characters long",
-      number: "Your username must start with a letter"
+      required: 'You need to provide a username',
+      minlength: 'Your username must be at least 3 characters long',
+      number: 'Your username must start with a letter'
     },
     password: {
       required: 'You need to provide a password',
@@ -53,11 +53,9 @@ export class SignupPage extends ValidationPage {
     super();
   }
 
-  ngOnInit() {
-    this.buildForm();
-  }
 
-  buildForm() {
+
+  buildForm(): void {
     this.form = this.fb.group({
       email: [this.email,
         [Validators.required, ExtraValidators.email]
@@ -75,11 +73,11 @@ export class SignupPage extends ValidationPage {
     super.buildForm();
   }
 
-  public showLogin(): void {
+  showLogin(): void {
     this.navCtrl.setRoot(LoginPage);
   }
 
-  public signupLocal(): void {
+  signupLocal(): void {
     this.loginService.signupLocal(this.email, this.userName, this.password)
       .then(result => {
         if (result.isSuccessful) {

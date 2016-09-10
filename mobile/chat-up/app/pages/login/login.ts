@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
-import {LoginService} from "./services/login.service";
-import {SignupPage} from "../signup/signup";
-import {FormBuilder, Validators, FormGroup} from "@angular/forms";
-import {ValidationPage} from "../validation/validation";
-import {ValidationLabel} from "../../components/validation-label/validation-label";
+import {LoginService} from './services/login.service';
+import {SignupPage} from '../signup/signup';
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+import {ValidationPage} from '../validation/validation';
+import {ValidationLabel} from '../../components/validation-label/validation-label';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
@@ -43,10 +43,6 @@ export class LoginPage extends ValidationPage {
       password: [this.password, Validators.required]
     });
     super.buildForm();
-  }
-
-  ngOnInit(): void {
-    this.buildForm();
   }
 
   public loginLocal(): void {

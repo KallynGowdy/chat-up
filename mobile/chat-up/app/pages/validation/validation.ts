@@ -1,5 +1,5 @@
 
-import {FormGroup} from "@angular/forms";
+import {FormGroup} from '@angular/forms';
 export class ValidationPage {
 
   form: FormGroup;
@@ -11,10 +11,14 @@ export class ValidationPage {
 
   buildForm(): void {
     this.form.valueChanges
-      .subscribe(data => this.onValueChanged(data));
+      .subscribe(() => this.onValueChanged());
   }
 
-  onValueChanged(data?: any): void {
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  onValueChanged(): void {
     if (!this.form) {
       return;
     }

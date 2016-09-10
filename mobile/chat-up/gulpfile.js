@@ -2,8 +2,9 @@ var gulp = require('gulp'),
     gulpWatch = require('gulp-watch'),
     del = require('del'),
     runSequence = require('run-sequence'),
-    argv = process.argv;
-
+    argv = process.argv,
+    path = require('path'),
+    karma = require('karma');
 
 /**
  * Ionic hooks
@@ -95,7 +96,6 @@ gulp.task('karma', function(done) {
 
 gulp.task('test', function(done) {
   runSequence(
-    'build',
     'lint',
     'karma',
     done

@@ -6,10 +6,8 @@ import {AboutPage} from '../about/about';
   templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
-
-  private tab1Root: any = HomePage;
-  private tab2Root: any = AboutPage;
-
-  constructor() {
-  }
+  /* tslint:disable no-unused-variable */
+  tab1Root: any = HomePage;
+  tab2Root: any = AboutPage;
+  /* tslint:enable no-unused-variable */
 }

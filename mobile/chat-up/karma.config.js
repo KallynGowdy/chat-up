@@ -1,25 +1,27 @@
+var webpackConfig = require('./webpack.config');
+
 module.exports = function(config) {
   'use strict';
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../',
+    basePath: './',
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai', 'sinon'],
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/es6-shim/es6-shim.js',        // TypeError: undefined is not a constructor (evaluating 'new exports.Map()')
-      'node_modules/reflect-metadata/Reflect.js', // 'Uncaught reflect-metadata shim is required when using class decorators'
-      'node_modules/zone.js/dist/zone.js',        // Zone.js dependencies (Zone undefined)
-      'node_modules/zone.js/dist/jasmine-patch.js',
-      'node_modules/zone.js/dist/async-test.js',
-      'node_modules/zone.js/dist/fake-async-test.js',
-      'app/**/*.spec.ts',
+      'node_modules/mocha/mocha.js',
+      'www/build/js/es6-shim.min.js',
+      'www/build/js/Reflect.js',
+      'www/build/js/zone.js',
+      'www/build/js/web-animations.min.js',
+      'app/app.spec.ts',
       {pattern: 'node_modules/reflect-metadata/Reflect.js.map', included: false, served: true}, // 404 on the same
-      {pattern: 'www/build/**/*.html', included: false, served: true},
+      {pattern: 'app/**/*.html', included: false, served: true},
+      {pattern: 'www/build/**/*.css', included: false, served: true}
     ],
 
     // list of files to exclude
@@ -35,6 +37,32 @@ module.exports = function(config) {
         {type: 'lcov', dir: 'coverage', subdir: '.'}
       ]
     },
+
+    preprocessors: {
+      '**/*.ts': ['webpack']
+    },
+
+    webpack: {
+      module: webpackConfig.module,
+      resolve: webpackConfig.resolve
+    },
+
+    // typescriptPreprocessor: {
+    //   // options passed to the typescript compiler
+    //   options: {
+    //     sourceMap: false, // (optional) Generates corresponding .map file.
+    //     target: 'ES5', // (optional) Specify ECMAScript target version: 'ES3' (default), or 'ES5'
+    //     module: 'amd', // (optional) Specify module code generation: 'commonjs' or 'amd'
+    //     noImplicitAny: false, // (optional) Warn on expressions and declarations with an implied 'any' type.
+    //     noResolve: false, // (optional) Skip resolution and preprocessing.
+    //     removeComments: false, // (optional) Do not emit comments to output.
+    //     concatenateOutput: false // (optional) Concatenate and emit output to single file. By default true if module option is omited, otherwise false.
+    //   },
+    //   // transforming the filenames
+    //   transformPath: function(path) {
+    //     return path.replace(/\.ts$/, '.js');
+    //   }
+    // },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -58,25 +86,22 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
+    singleRun: true,
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
-      'PhantomJS'
+      'Chrome'
     ],
 
     // https://github.com/lathonez/clicker/issues/82
     // try increasing this value if you see the error "Disconnected (1 times), because no message in 30000 ms."
-    browserNoActivityTimeout: 30000,
-
-    customContextFile: "test/karma-static/context.html",
-
-    customDebugFile: "test/karma-static/debug.html",
-
+    browserNoActivityTimeout: 30000
   });
 
   if (process.env.TRAVIS || process.env.CIRCLECI) {
     config.browsers = ['Chrome', 'PhantomJS'];
+    config.singleRun = true;
   }
 };
