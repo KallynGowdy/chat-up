@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {NavController, LoadingController} from 'ionic-angular';
-import {TabsPage} from '../tabs/tabs';
 import {LoginService} from '../login/services/login.service';
 import {LoginPage} from '../login/login';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ValidationPage} from '../validation/validation';
 import {ValidationLabel} from '../../components/validation-label/validation-label';
 import * as ExtraValidators from '../../common/validation';
+import {HomePage} from "../home/home";
 
 @Component({
   templateUrl: 'build/pages/signup/signup.html',
@@ -85,7 +85,7 @@ export class SignupPage extends ValidationPage {
       .then(result => {
         loader.destroy();
         if (result.isSuccessful) {
-          this.navCtrl.push(TabsPage);
+          this.navCtrl.setRoot(HomePage);
         } else {
           this.submitErrors = result.messages.map(m => m.toString());
         }
